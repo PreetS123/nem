@@ -1,5 +1,6 @@
 
   const http= require('http');
+  const fs= require('fs');
 
 
 
@@ -48,6 +49,14 @@
             perc:'80%',
         }
         res.end(JSON.stringify(obj))
+    }
+    else if(req.url==='/bench'){
+              fs.readFileSync('./data.txt',{encoding:'utf-8'},(err,data)=>{
+               if(er){
+                return res.end('server crashed')
+               }
+                return res.end(data);
+              })
     }
     else{
          res.end('Welcome to homepage')
