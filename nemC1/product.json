@@ -1,0 +1,6 @@
+{
+  "products": [
+    { "id": 1, "name": "Mi", "category": "Mobile", "price": 38000 },
+    { "id": 2, "name": "Mi 11", "category": "Mobile", "price": 10000 }
+  ]
+}
