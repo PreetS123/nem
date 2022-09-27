@@ -1,0 +1,6 @@
+{
+  "attendance": [
+    { "course": "NEM-111", "id": 1 },
+    { "course": "NEM-201", "id": 2, "modify_course": "NEM-121" }
+  ]
+}
