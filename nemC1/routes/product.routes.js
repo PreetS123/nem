@@ -42,7 +42,7 @@ product.put('/:productId',(req,res)=>{
   res.send('product modified');
 })
 
-product.delete('/',(req,res)=>{
+product.delete('/:productId',(req,res)=>{
 
 })
 

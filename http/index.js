@@ -51,8 +51,8 @@
         res.end(JSON.stringify(obj))
     }
     else if(req.url==='/bench'){
-              fs.readFileSync('./data.txt',{encoding:'utf-8'},(err,data)=>{
-               if(er){
+              fs.readFile('./data.txt',{encoding:'utf-8'},(err,data)=>{
+               if(err){
                 return res.end('server crashed')
                }
                 return res.end(data);
@@ -67,3 +67,7 @@
   server.listen(8000,()=>{
     console.log('Listening on 8000')
   })
+
+
+
+  
