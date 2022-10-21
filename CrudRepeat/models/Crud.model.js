@@ -4,7 +4,7 @@ require('dotenv').config();
 const crudSchema= mongoose.Schema({
   name:{type:String,required:true},
   age:{type:Number,required:true},
-  coure:{type:String,required:true},
+  course:{type:String,required:true},
   collage:{type:String,required:true},
 })
 
