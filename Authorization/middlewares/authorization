@@ -1,0 +1,13 @@
+const authModel = require('../models/Auth.model');
+
+ const authorization=(permittedRole)=> async(req,res,next)=>{
+    let {email}= req.body;
+    const user= await authModel.findOne({email});
+
+    if(!permittedRole.includes(user.role)){
+        return res.send('not authorized');
+    }
+    next();
+ }
+
+ module.exports=authorization

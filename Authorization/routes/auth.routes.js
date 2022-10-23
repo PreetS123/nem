@@ -2,6 +2,7 @@ const express= require('express');
 const authModel= require('../models/Auth.model');
 const jwt= require('jsonwebtoken');
 const bcrypt= require('bcrypt');
+const { application } = require('express');
 const authRouter=express.Router();
 
 authRouter.post('/signup',async(req,res)=>{
@@ -58,5 +59,6 @@ authRouter.post('/login',async(req,res)=>{
         res.status(500).send({message:err.message});
       }
   })
+
 
 module.exports=authRouter;
