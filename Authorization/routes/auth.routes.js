@@ -1,6 +1,7 @@
 const express= require('express');
 const authModel= require('../models/Auth.model');
 const jwt= require('jsonwebtoken');
+const bcrypt= require('bcrypt');
 const authRouter=express.Router();
 
 authRouter.post('/signup',async(req,res)=>{
@@ -8,7 +9,7 @@ authRouter.post('/signup',async(req,res)=>{
     bcrypt.hash(password, 8, function(err, hash) {
         // Store hash in your password DB.
         if(err){
-            res.send('something went wrong');
+           return res.send('something went wrong');
         }
         let auth= new authModel({email,password:hash,role});
         auth.save();
@@ -18,18 +19,21 @@ authRouter.post('/signup',async(req,res)=>{
 
 authRouter.post('/login',async(req,res)=>{
     let {email,password}= req.body;
-    let auth= await authModel.findOne({email});
+    console.log(email,password)
+    let auth=await authModel.findOne({email:email});
+    console.log(auth);
     let hash= auth.password;
-    await bcrypt.compare(password, hash, function(err, result) {
+    bcrypt.compare(password, hash, function(err, result) {
         // result == true
         if(err){
             res.send('something went wrong');
         }
         if(result){
             let token = jwt.sign({email:auth.email,_id:auth._id }, 'secret');
-             if(auth){
-                   res.send({message:'login successfull',token:token});
+             if(!auth){
+                  return res.send({message:'login unsuccessfull '});
              }
+             return res.send({message:'login successful',token:token});
         }
         else{
             res.send('invalid user');

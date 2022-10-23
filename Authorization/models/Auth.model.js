@@ -7,6 +7,6 @@ const authSchema= mongoose.Schema({
     role:{type:String,default:'customer'}
 })
 
-const authModel= mongoose.model('authorization',authSchema);
+const authModel= mongoose.model('auth',authSchema);
 
 module.exports=authModel;
