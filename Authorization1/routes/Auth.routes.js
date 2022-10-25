@@ -51,7 +51,7 @@ authRouter.post('/login',async(req,res)=>{
         if(err){
             res.send('Invalid user');
         }
-         console.log(decoded);
+         console.log(decoded.email);
       });
       auth= await authModel.findOne({_id:id});
             res.send('User Authenticated')
