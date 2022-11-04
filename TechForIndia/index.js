@@ -1,15 +1,16 @@
 const express= require('express');
-require('dotenv').config();
 const cors= require('cors');
 const connection = require('./config');
-
+const registerUser= require('./Routes/User.routes');
+require('dotenv').config();
 const app= express();
 app.use(express.json());
-app.use(cors);
+app.use(cors());
 
-app.get('/',()=>{
+app.get('/',(req,res)=>{
     res.send('Welcome to Tech For India')
 })
+app.use('/volenteer',registerUser)
 
 const PORT= process.env.PORT|| 8080;
  app.listen(PORT,async()=>{
