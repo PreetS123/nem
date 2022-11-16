@@ -2,8 +2,11 @@ const mongoose= require('mongoose');
 
 
 const crudSchema= mongoose.Schema({
-    email:{type:String,required:true},
-    password:{type:String,required:true}
+    name:{type:String,required:true},
+    father:{type:String,required:true},
+    mother:{type:String,required:true},
+    city:{type:String,required:true},
+    age:{type:Number,required:false}
 })
 
 const CrudModel=  mongoose.model('crud',crudSchema);
