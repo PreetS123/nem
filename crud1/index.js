@@ -9,12 +9,12 @@ app.use(express.json());
 app.use(cors());
 
 
-app.get('/',(req,res)=>{
-    console.log(req.url);
-    res.send('welcome to home page');
-})
+// app.get('/',(req,res)=>{
+//     console.log(req.url);
+//     res.send('welcome to home page');
+// })
 
- app.get('/crud',async(req,res)=>{
+ app.get('/',async(req,res)=>{
       try{
             const user= await CrudModel.find();
             res.status(200).send(user)
@@ -24,7 +24,17 @@ app.get('/',(req,res)=>{
       }
  })
 
-  app.post('/crud/post',async(req,res)=>{
+ app.get('/:id',async(req,res)=>{
+    try{
+        const userId=req.params.id;
+        const user= await CrudModel.findById({_id:userId});
+        res.send({user:user})
+    }catch(er){
+        res.status(500).send({message:er.message})
+    }
+ })
+
+  app.post('/post',async(req,res)=>{
     const {name,father,mother,city,age}= req.body;
     try{
         const user=await CrudModel.create({name,father,mother,city,age});
@@ -38,7 +48,7 @@ app.get('/',(req,res)=>{
   })
   
 
-    app.delete('/crud/delete/:id',async(req,res)=>{
+    app.delete('/delete/:id',async(req,res)=>{
         const userId= req.params.id;
           try{
                const user= await CrudModel.findByIdAndDelete({_id:userId})
@@ -49,7 +59,7 @@ app.get('/',(req,res)=>{
           }
     })
 
-    app.put('/crud/edit/:id',async(req,res)=>{
+    app.put('/edit/:id',async(req,res)=>{
         
         try{
                const user= await CrudModel.findByIdAndUpdate(req.params.id,req.body,{

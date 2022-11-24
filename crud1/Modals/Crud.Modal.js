@@ -2,8 +2,8 @@ const mongoose= require('mongoose');
 
 
 const crudSchema= mongoose.Schema({
-    name:{type:String,required:true},
-    father:{type:String,required:true},
+    title:{type:String,required:true},
+    description:{type:String,required:true},
     mother:{type:String,required:true},
     city:{type:String,required:true},
     age:{type:Number,required:false}
