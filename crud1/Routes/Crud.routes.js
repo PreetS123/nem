@@ -9,7 +9,7 @@ CrudRouter.get('/',async(req,res)=>{
          const user= await crudModel.find();   
          res.send(user);
     }catch(er){
-        res.status(500).send(er);
+        res.status(500).send(er.message);
     }
 })
 
@@ -33,6 +33,17 @@ CrudRouter.delete('/delete/:id',async(req,res)=>{
 
     }catch(er){
         res.status(500).send({message:er.message});
+    }
+})
+
+CrudRouter.patch('/edit/:id',async(req,res)=>{
+    
+    try{
+       const user= await crudModel.findByIdAndUpdate(req.params.id,req.body);
+         
+         res.send(user);
+    }catch(er){
+        res.status(500).send({message:er.message})
     }
 })
 
