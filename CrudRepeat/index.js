@@ -1,6 +1,7 @@
 const express= require('express');
 const cors= require('cors');
 const connection= require('./config.js');
+require('dotenv').config();
 
 const app= express();
 app.use(cors());
@@ -15,7 +16,7 @@ app.get('/',(req,res)=>{
 
 
 
-
+const PORT= process.env.PORT|| 8080;
 app.listen(PORT,async()=>{
     try{
         await connection;
@@ -23,4 +24,5 @@ app.listen(PORT,async()=>{
     }catch(er){
         console.log('chk config',er);
     }
+    console.log(`listening on port ${PORT}`)
 })
