@@ -1,6 +1,7 @@
 const express= require('express');
 const cors= require('cors');
 const connection= require('./config.js');
+const crudRouter = require('./routes/Crud.routes.js');
 require('dotenv').config();
 
 const app= express();
@@ -12,6 +13,7 @@ app.get('/',(req,res)=>{
     res.send('WELCOME TO CRUD OPERATION WORLD');
 })
 
+app.use('/crud',crudRouter);
 
 
 
